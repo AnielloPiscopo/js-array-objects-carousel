@@ -65,6 +65,8 @@ images.forEach((img , index) => {
 
    carouselItem.innerHTML = `
       <img src='${img['image']}'></img>
+      <h1>${img['title']}</h1>
+      <span>${img['text']}</span>
    `;
 
    carouselImageElement.append(carouselItem);
