@@ -75,6 +75,10 @@ images.forEach((img , index) => {
 
 const carouselItems = document.querySelectorAll('.my_carousel-item');
 
+let myInterval = setInterval(()=>{
+   current = increaseCurrentCarouselItem(carouselItems , current);
+},3000)
+
 
 // * EVENTI
 btnPreviousElement.addEventListener('click',()=>{
@@ -84,10 +88,6 @@ btnPreviousElement.addEventListener('click',()=>{
 btnNextElement.addEventListener('click',()=>{
    current = increaseCurrentCarouselItem(carouselItems,current);
 })
-
-let myInterval = setInterval(()=>{
-   current = increaseCurrentCarouselItem(carouselItems , current);
-},3000)
 
 
 
