@@ -53,9 +53,19 @@ const carouselImageElement = document.querySelector('main .carousel-image');
 CODICE PRINCIPALE*/
 
 // * CODICE LINEARE
-let shish = document.createElement('div');
-shish.innerHTML = '<span>shsu</span>';
-shish.append(main);
+images.forEach((img , index) => {
+   const carouselItem = getAnElementWithClasses('div','my_carousel-item');
+
+   if(index === 0){
+      carouselItem.classList.add('active');
+   }
+
+   carouselItem.innerHTML = `
+      <img src='${img['image']}'></img>
+   `;
+
+   carouselImageElement.prepend(carouselItem);
+})
 
 
 
