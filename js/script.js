@@ -38,7 +38,7 @@ const images = [
 
 
 // ? PRELIEVO DAL DOM INIZIALE
-const header = document.querySelector('header');
+const main = document.querySelector('main');
 const btnsContainer = document.querySelector('main .buttons');
 const btnPreviousElement = document.querySelector('main .button.previous');
 const btnNextElement = document.querySelector('main .button.next');
@@ -53,19 +53,9 @@ const carouselImageElement = document.querySelector('main .carousel-image');
 CODICE PRINCIPALE*/
 
 // * CODICE LINEARE
-images.forEach((image , index) => {
-   let carouselItemElement = getAnElementWithClasses('div','my_carousel-item');
-
-   if(index === 0){
-      carouselItemElement.classList.add('active');
-   }
-
-   const carouselItemElementImg = getAnImgWithClasses('img','my_img',image['image']); 
-
-   carouselItemElementImg.append(header)
-})
-
-
+let shish = document.createElement('div');
+shish.innerHTML = '<span>shsu</span>';
+shish.append(main);
 
 
 
@@ -78,7 +68,7 @@ images.forEach((image , index) => {
 FUNZIONI*/
 // * FUNZIONE PER CREARE UN ELEMENTO HTML CON UNA O PIU' CLASSI
 function getAnElementWithClasses(element , elementClasses){
-   let htmlElement = document.createElement('element');
+   let htmlElement = document.createElement(element);
 
    htmlElement.className = elementClasses;
 
@@ -88,8 +78,8 @@ function getAnElementWithClasses(element , elementClasses){
 
 
 // * FUNZIONE PER CREARE UN IMAMGINE HTML CON UNA O PIU' CLASSI
-function getAnImgWithClasses(element , elementClasses , src , alt , title){
-   let img = getAnElementWithClasses(element , elementClasses);
+function getAnImgWithClasses(imgClasses , src , alt , title){
+   let img = getAnElementWithClasses('img' , imgClasses);
    img.src = `${src}`;
    img.alt = {alt};
    img.title = title;
