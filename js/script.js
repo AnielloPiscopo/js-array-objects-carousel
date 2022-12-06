@@ -85,6 +85,17 @@ images.forEach((img , index) => {
 const carouselItems = document.querySelectorAll('.my_carousel-item');
 const carouselThumbnails = document.querySelectorAll('.carousel-thumbnails');
 
+carouselThumbnails.forEach((carouselThumbnail,index)=>{
+   carouselThumbnail.addEventListener('click', ()=>{
+      carouselItems[current].classList.remove('active');
+      carouselThumbnails[current].classList.add('active');
+      current = index;
+      console.log(current);
+      carouselItems[current].classList.add('active');
+      carouselThumbnails[current].classList.remove('active');
+   })
+})
+
 let myInterval = setInterval(()=>{
    current = increaseCurrentCarouselItem(carouselItems , current , carouselThumbnails);
 },3000)
