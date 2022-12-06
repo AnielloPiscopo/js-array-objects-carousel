@@ -42,22 +42,11 @@ const btnsContainer = document.querySelector('main .buttons');
 const btnPreviousElement = document.querySelector('main .button.previous');
 const btnNextElement = document.querySelector('main .button.next');
 const carouselImageElement = document.querySelector('main .carousel-image');
+const carouselThumbnailsContainer = document.querySelector('main .carousel-thumbnails-container');
 
 
 // ? VARIABILI
 let current = 0;
-let myInterval = setInterval(()=>{
-   carouselItems[current].classList.remove('active');
-
-   current++;
-
-   
-   if(current > carouselItems.length-1){
-      current = 0;
-   }
-
-   carouselItems[current].classList.add('active');
-},3000)
 
 
 
@@ -89,31 +78,16 @@ const carouselItems = document.querySelectorAll('.my_carousel-item');
 
 // * EVENTI
 btnPreviousElement.addEventListener('click',()=>{
-   carouselItems[current].classList.remove('active');
-
-   current--;
-
-   
-   if(current < 0){
-      current = carouselItems.length-1;
-   }
-
-   carouselItems[current].classList.add('active');
+   current = decreaseCurrentCarouselItem(carouselItems,current);
 })
-
 
 btnNextElement.addEventListener('click',()=>{
-   carouselItems[current].classList.remove('active');
-
-   current++;
-
-   
-   if(current > carouselItems.length-1){
-      current = 0;
-   }
-
-   carouselItems[current].classList.add('active');
+   current = increaseCurrentCarouselItem(carouselItems,current);
 })
+
+let myInterval = setInterval(()=>{
+   current = increaseCurrentCarouselItem(carouselItems , current);
+},3000)
 
 
 
@@ -141,4 +115,38 @@ function getAnImgWithClasses(imgClasses , src , alt , title){
    img.src = `${src}`;
    img.alt = {alt};
    img.title = title;
+}
+
+
+
+// * FUNZIONE PER ANDARE AVANTI DI UN ELEMENTO DI UN CAROSELLO
+function increaseCurrentCarouselItem(carouselItemsList , currentNumber){
+   carouselItemsList[currentNumber].classList.remove('active');
+
+   currentNumber++;
+
+   
+   if(currentNumber > carouselItemsList.length-1){
+      currentNumber = 0;
+   }
+
+   carouselItemsList[currentNumber].classList.add('active');
+   return currentNumber;
+}
+
+
+
+// * FUNZIONE PER ANDARE INDIETRO DI UN ELEMENTO DI UN CAROSELLO
+function decreaseCurrentCarouselItem(carouselItemsList , currentNumber){
+   carouselItemsList[currentNumber].classList.remove('active');
+
+   currentNumber--;
+
+   
+   if(currentNumber < 0){
+      currentNumber = carouselItemsList.length-1;
+   }
+
+   carouselItemsList[currentNumber].classList.add('active');
+   return currentNumber;
 }

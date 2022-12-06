@@ -19,9 +19,17 @@ div.carousel-image{
     background-color: blue;
 }
 
+div.carousel-thumbnails-container{
+    height: 100%;
+}
+
 div.carousel-thumbnails{
-    width: 21.5%;
     background-color: violet;
+    height: 25%;    
+}
+
+div.carousel-thumbnails img{
+    height: 100%;
 }
 
 .font-color-white{
