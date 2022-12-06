@@ -1,3 +1,9 @@
+/*----------------------------------------------------------------------
+DICHIARAZIONI E INIZIALIZZAZIONI GENERALI*/
+
+// * INIZIALIZZAZIONI
+
+// ? ARRAY E OGGETTI DI PARTENZA
 const images = [
    {
       image: 'img/01.webp',
@@ -22,10 +28,69 @@ const images = [
       title: 'Stray',
       text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
    },
-   
+
    {
       image: 'img/05.webp',
       title: "Marvel's Avengers",
       text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
    }
 ];
+
+
+// ? PRELIEVO DAL DOM INIZIALE
+const header = document.querySelector('header');
+const btnsContainer = document.querySelector('main .buttons');
+const btnPreviousElement = document.querySelector('main .button.previous');
+const btnNextElement = document.querySelector('main .button.next');
+const carouselImageElement = document.querySelector('main .carousel-image');
+
+
+
+
+
+
+/*----------------------------------------------------------------------
+CODICE PRINCIPALE*/
+
+// * CODICE LINEARE
+images.forEach((image , index) => {
+   let carouselItemElement = getAnElementWithClasses('div','my_carousel-item');
+
+   if(index === 0){
+      carouselItemElement.classList.add('active');
+   }
+
+   const carouselItemElementImg = getAnImgWithClasses('img','my_img',image['image']); 
+
+   carouselItemElementImg.append(header)
+})
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------------------------------
+FUNZIONI*/
+// * FUNZIONE PER CREARE UN ELEMENTO HTML CON UNA O PIU' CLASSI
+function getAnElementWithClasses(element , elementClasses){
+   let htmlElement = document.createElement('element');
+
+   htmlElement.className = elementClasses;
+
+   return htmlElement;
+}
+
+
+
+// * FUNZIONE PER CREARE UN IMAMGINE HTML CON UNA O PIU' CLASSI
+function getAnImgWithClasses(element , elementClasses , src , alt , title){
+   let img = getAnElementWithClasses(element , elementClasses);
+   img.src = `${src}`;
+   img.alt = {alt};
+   img.title = title;
+}
