@@ -46,6 +46,18 @@ const carouselImageElement = document.querySelector('main .carousel-image');
 
 // ? VARIABILI
 let current = 0;
+let myInterval = setInterval(()=>{
+   carouselItems[current].classList.remove('active');
+
+   current++;
+
+   
+   if(current > carouselItems.length-1){
+      current = 0;
+   }
+
+   carouselItems[current].classList.add('active');
+},3000)
 
 
 
