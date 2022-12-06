@@ -38,11 +38,14 @@ const images = [
 
 
 // ? PRELIEVO DAL DOM INIZIALE
-const main = document.querySelector('main');
 const btnsContainer = document.querySelector('main .buttons');
 const btnPreviousElement = document.querySelector('main .button.previous');
 const btnNextElement = document.querySelector('main .button.next');
 const carouselImageElement = document.querySelector('main .carousel-image');
+
+
+// ? VARIABILI
+let current = 0;
 
 
 
@@ -64,7 +67,38 @@ images.forEach((img , index) => {
       <img src='${img['image']}'></img>
    `;
 
-   carouselImageElement.prepend(carouselItem);
+   carouselImageElement.append(carouselItem);
+})
+
+const carouselItems = document.querySelectorAll('.my_carousel-item');
+
+
+// * EVENTI
+btnPreviousElement.addEventListener('click',()=>{
+   carouselItems[current].classList.remove('active');
+
+   current--;
+
+   
+   if(current < 0){
+      current = carouselItems.length-1;
+   }
+
+   carouselItems[current].classList.add('active');
+})
+
+
+btnNextElement.addEventListener('click',()=>{
+   carouselItems[current].classList.remove('active');
+
+   current++;
+
+   
+   if(current > carouselItems.length-1){
+      current = 0;
+   }
+
+   carouselItems[current].classList.add('active');
 })
 
 
