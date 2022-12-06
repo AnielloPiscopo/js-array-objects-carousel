@@ -25,11 +25,15 @@ div.carousel-thumbnails-container{
 
 div.carousel-thumbnails{
     background-color: violet;
+    display: none;
     height: 25%;    
 }
 
 div.carousel-thumbnails img{
     height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: right;
 }
 
 .font-color-white{
@@ -60,7 +64,8 @@ div.my_carousel-item {
     display:none;
 }
 
-div.my_carousel-item.active {
+div.my_carousel-item.active ,
+div.carousel-thumbnails.active{
     display:block;
 }
 
@@ -68,5 +73,5 @@ div.my_carousel-item img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: right;
 }

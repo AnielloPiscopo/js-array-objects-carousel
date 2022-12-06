@@ -59,10 +59,13 @@ CODICE PRINCIPALE*/
 // * CODICE LINEARE
 images.forEach((img , index) => {
    const carouselItem = getAnElementWithClasses('div','my_carousel-item');
+   const carouselThumbnail = getAnElementWithClasses('div','carousel-thumbnails active');
 
    if(index === 0){
       carouselItem.classList.add('active');
+      carouselThumbnail.classList.remove('active');
    }
+
 
    carouselItem.innerHTML = `
       <img src='${img['image']}'></img>
@@ -70,23 +73,35 @@ images.forEach((img , index) => {
       <span>${img['text']}</span>
    `;
 
+   carouselThumbnail.innerHTML = `
+      <img src='${img['image']}'></img>
+   `;
+
+
    carouselImageElement.append(carouselItem);
+   carouselThumbnailsContainer.append(carouselThumbnail);
 })
 
 const carouselItems = document.querySelectorAll('.my_carousel-item');
+const carouselThumbnails = document.querySelectorAll('.carousel-thumbnails');
 
 let myInterval = setInterval(()=>{
-   current = increaseCurrentCarouselItem(carouselItems , current);
+   current = increaseCurrentCarouselItem(carouselItems , current , carouselThumbnails);
 },3000)
 
 
+
 // * EVENTI
+
+// ? Click al bottone per tornare indietro di un elemento del carosello
 btnPreviousElement.addEventListener('click',()=>{
-   current = decreaseCurrentCarouselItem(carouselItems,current);
+   current = decreaseCurrentCarouselItem(carouselItems,current ,carouselThumbnails);
 })
 
+
+// ? Click al bottone per andare avanti di un elemento del carosello
 btnNextElement.addEventListener('click',()=>{
-   current = increaseCurrentCarouselItem(carouselItems,current);
+   current = increaseCurrentCarouselItem(carouselItems,current,carouselThumbnails);
 })
 
 
@@ -120,33 +135,37 @@ function getAnImgWithClasses(imgClasses , src , alt , title){
 
 
 // * FUNZIONE PER ANDARE AVANTI DI UN ELEMENTO DI UN CAROSELLO
-function increaseCurrentCarouselItem(carouselItemsList , currentNumber){
-   carouselItemsList[currentNumber].classList.remove('active');
+function increaseCurrentCarouselItem(items , currentNumber , thumbnails){
+   items[currentNumber].classList.remove('active');
+   thumbnails[currentNumber].classList.add('active');
 
    currentNumber++;
 
    
-   if(currentNumber > carouselItemsList.length-1){
+   if(currentNumber > items.length-1){
       currentNumber = 0;
    }
 
-   carouselItemsList[currentNumber].classList.add('active');
+   items[currentNumber].classList.add('active');
+   thumbnails[currentNumber].classList.remove('active');
    return currentNumber;
 }
 
 
 
 // * FUNZIONE PER ANDARE INDIETRO DI UN ELEMENTO DI UN CAROSELLO
-function decreaseCurrentCarouselItem(carouselItemsList , currentNumber){
-   carouselItemsList[currentNumber].classList.remove('active');
+function decreaseCurrentCarouselItem(items , currentNumber , thumbnails){
+   items[currentNumber].classList.remove('active');
+   thumbnails[currentNumber].classList.add('active');
 
    currentNumber--;
 
    
    if(currentNumber < 0){
-      currentNumber = carouselItemsList.length-1;
+      currentNumber = items.length-1;
    }
 
-   carouselItemsList[currentNumber].classList.add('active');
+   items[currentNumber].classList.add('active');
+   thumbnails[currentNumber].classList.remove('active');
    return currentNumber;
 }
