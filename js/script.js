@@ -164,10 +164,7 @@ function getAnElementWithClasses(element , elementClasses){
 function increaseCurrentCarouselItem(items , currentIndex , thumbnails){
    eliminateCurrentCarouselItem(items,currentIndex,thumbnails);
 
-   currentIndex++;
-
-   
-   if(currentIndex > items.length-1) currentIndex = 0;
+   currentIndex = (currentIndex >= items.length-1) ? 0 :  currentIndex+1;
 
    addCurrentCarouselItem(items,currentIndex,thumbnails);
 
@@ -180,10 +177,7 @@ function increaseCurrentCarouselItem(items , currentIndex , thumbnails){
 function decreaseCurrentCarouselItem(items , currentIndex , thumbnails){
    eliminateCurrentCarouselItem(items,currentIndex,thumbnails);
 
-   currentIndex--;
-
-   
-   if(currentIndex < 0) currentIndex = items.length-1;
+   currentIndex = (currentIndex <= 0) ? items.length-1 : currentIndex-1;
 
    addCurrentCarouselItem(items,currentIndex,thumbnails);
 
