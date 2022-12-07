@@ -131,6 +131,7 @@ let myInterval = setInterval(()=>{
 // ? ROTTURA DELL'INTERVALLO CREATO TRAMITE CLICK SUL TITOLO
 title.addEventListener('click',()=>{
    clearInterval(myInterval);
+   alert('Intervallo bloccato!');
 })
 
 
