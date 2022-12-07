@@ -167,9 +167,7 @@ function increaseCurrentCarouselItem(items , currentIndex , thumbnails){
    currentIndex++;
 
    
-   if(currentIndex > items.length-1){
-      currentIndex = 0;
-   }
+   if(currentIndex > items.length-1) currentIndex = 0;
 
    addCurrentCarouselItem(items,currentIndex,thumbnails);
 
@@ -185,9 +183,7 @@ function decreaseCurrentCarouselItem(items , currentIndex , thumbnails){
    currentIndex--;
 
    
-   if(currentIndex < 0){
-      currentIndex = items.length-1;
-   }
+   if(currentIndex < 0) currentIndex = items.length-1;
 
    addCurrentCarouselItem(items,currentIndex,thumbnails);
 
