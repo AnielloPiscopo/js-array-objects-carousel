@@ -38,6 +38,7 @@ const images = [
 
 
 // ? PRELIEVO DAL DOM INIZIALE
+const title = document.querySelector('header h1');
 const btnsContainer = document.querySelector('main .buttons');
 const btnPreviousElement = document.querySelector('main .button.previous');
 const btnNextElement = document.querySelector('main .button.next');
@@ -57,16 +58,21 @@ let current = 0;
 CODICE PRINCIPALE*/
 
 // * CODICE LINEARE
+
+// ? CREATI GLI ELEMENTI DEL CAROSELLO IN POSITIONE STATICA E INIIZIALE
 images.forEach((img , index) => {
+   // * Creazione degli elementi HTML
    const carouselItem = getAnElementWithClasses('div','my_carousel-item');
    const carouselThumbnail = getAnElementWithClasses('div','carousel-thumbnails active');
 
+   // * Condizione iniziale
    if(index === 0){
       carouselItem.classList.add('active');
       carouselThumbnail.classList.remove('active');
    }
 
 
+   // * Riempimento del contenuto
    carouselItem.innerHTML = `
       <img src='${img['image']}'></img>
       <h3 class='fw-bold'>${img['title']}</h3>
@@ -78,13 +84,33 @@ images.forEach((img , index) => {
    `;
 
 
+   // * Inserimento nel DOM
    carouselImageElement.append(carouselItem);
    carouselThumbnailsContainer.append(carouselThumbnail);
 })
 
+
+// ? CREAZIONE DEGLI ARRAY LEGATI AGLI CAROUSEL ITEM E THUMBNAILS PRESENTI NEL DOM CREATI
 const carouselItems = document.querySelectorAll('.my_carousel-item');
 const carouselThumbnails = document.querySelectorAll('.carousel-thumbnails');
 
+
+
+// * EVENTI E TIMING FUNCTIONS
+
+// ? CLICK AL BOTTONE PER TORNARE INDIETRO DI UN ELEMENTO DEL CAROSELLO
+btnPreviousElement.addEventListener('click',()=>{
+   current = decreaseCurrentCarouselItem(carouselItems,current ,carouselThumbnails);
+})
+
+
+// ? CLICK AL BOTTONE PER ANDARE AVANTI DI UN ELEMENTO DEL CAROSELLO
+btnNextElement.addEventListener('click',()=>{
+   current = increaseCurrentCarouselItem(carouselItems,current,carouselThumbnails);
+})
+
+
+// ? CLICK AI SINGOLI THUNGNAILS PER SELEZIONARE L'ITEM PRINCIPALE DEL CAROSELLO
 carouselThumbnails.forEach((carouselThumbnail,index)=>{
    carouselThumbnail.addEventListener('click', ()=>{
       eliminateCurrentCarouselItem(carouselItems,current,carouselThumbnails);
@@ -95,23 +121,16 @@ carouselThumbnails.forEach((carouselThumbnail,index)=>{
    })
 })
 
+
+// ? ANDARE AVANTI DI UN ELEMENTO DEL CAROSELLO NEL TEMPO COSTANTEMENTE
 let myInterval = setInterval(()=>{
    current = increaseCurrentCarouselItem(carouselItems , current , carouselThumbnails);
 },3000)
 
 
-
-// * EVENTI
-
-// ? Click al bottone per tornare indietro di un elemento del carosello
-btnPreviousElement.addEventListener('click',()=>{
-   current = decreaseCurrentCarouselItem(carouselItems,current ,carouselThumbnails);
-})
-
-
-// ? Click al bottone per andare avanti di un elemento del carosello
-btnNextElement.addEventListener('click',()=>{
-   current = increaseCurrentCarouselItem(carouselItems,current,carouselThumbnails);
+// ? ROTTURA DELL'INTERVALLO CREATO TRAMITE CLICK SUL TITOLO
+title.addEventListener('click',()=>{
+   clearInterval(myInterval);
 })
 
 
