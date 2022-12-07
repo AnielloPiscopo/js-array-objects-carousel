@@ -48,7 +48,7 @@ const carouselThumbnailsContainer = document.querySelector('main .carousel-thumb
 
 // ? VARIABILI
 let current = 0;
-
+let intervalPresence = true;
 
 
 
@@ -131,7 +131,13 @@ let myInterval = setInterval(()=>{
 // ? ROTTURA DELL'INTERVALLO CREATO TRAMITE CLICK SUL TITOLO
 title.addEventListener('click',()=>{
    clearInterval(myInterval);
-   alert('Intervallo bloccato!');
+   
+
+   if(intervalPresence) alert('Intervallo bloccato!');
+   
+   intervalPresence = false;
+
+   title.title = "L'intervallo è stato già interotto";
 })
 
 
