@@ -87,12 +87,11 @@ const carouselThumbnails = document.querySelectorAll('.carousel-thumbnails');
 
 carouselThumbnails.forEach((carouselThumbnail,index)=>{
    carouselThumbnail.addEventListener('click', ()=>{
-      carouselItems[current].classList.remove('active');
-      carouselThumbnails[current].classList.add('active');
+      eliminateCurrentCarouselItem(carouselItems,current,carouselThumbnails);
+
       current = index;
-      console.log(current);
-      carouselItems[current].classList.add('active');
-      carouselThumbnails[current].classList.remove('active');
+
+      addCurrentCarouselItem(carouselItems,current,carouselThumbnails);
    })
 })
 
@@ -146,37 +145,51 @@ function getAnImgWithClasses(imgClasses , src , alt , title){
 
 
 // * FUNZIONE PER ANDARE AVANTI DI UN ELEMENTO DI UN CAROSELLO
-function increaseCurrentCarouselItem(items , currentNumber , thumbnails){
-   items[currentNumber].classList.remove('active');
-   thumbnails[currentNumber].classList.add('active');
+function increaseCurrentCarouselItem(items , currentIndex , thumbnails){
+   eliminateCurrentCarouselItem(items,currentIndex,thumbnails);
 
-   currentNumber++;
+   currentIndex++;
 
    
-   if(currentNumber > items.length-1){
-      currentNumber = 0;
+   if(currentIndex > items.length-1){
+      currentIndex = 0;
    }
 
-   items[currentNumber].classList.add('active');
-   thumbnails[currentNumber].classList.remove('active');
-   return currentNumber;
+   addCurrentCarouselItem(items,currentIndex,thumbnails);
+
+   return currentIndex;
 }
 
 
 
 // * FUNZIONE PER ANDARE INDIETRO DI UN ELEMENTO DI UN CAROSELLO
-function decreaseCurrentCarouselItem(items , currentNumber , thumbnails){
-   items[currentNumber].classList.remove('active');
-   thumbnails[currentNumber].classList.add('active');
+function decreaseCurrentCarouselItem(items , currentIndex , thumbnails){
+   eliminateCurrentCarouselItem(items,currentIndex,thumbnails);
 
-   currentNumber--;
+   currentIndex--;
 
    
-   if(currentNumber < 0){
-      currentNumber = items.length-1;
+   if(currentIndex < 0){
+      currentIndex = items.length-1;
    }
 
-   items[currentNumber].classList.add('active');
-   thumbnails[currentNumber].classList.remove('active');
-   return currentNumber;
+   addCurrentCarouselItem(items,currentIndex,thumbnails);
+
+   return currentIndex;
+}
+
+
+
+// * FUNZIONE PER RIMUOVERE IL VECCHIO ELEMENTO DEL CAROSELLO DALLA CASELLA PRINCIPALE
+function eliminateCurrentCarouselItem(items,currentIndex , thumbnails){
+   items[currentIndex].classList.remove('active');
+   thumbnails[currentIndex].classList.add('active');
+}
+
+
+
+// * FUNZIONE PER AGGIUNGERE IL NUOVO ELEMENTO DEL CAROSELLO NELLA CASELLA PRINCIPALE
+function addCurrentCarouselItem(items,currentIndex , thumbnails){
+   items[currentIndex].classList.add('active');
+   thumbnails[currentIndex].classList.remove('active');
 }
