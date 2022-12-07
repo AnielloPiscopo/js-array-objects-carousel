@@ -153,16 +153,6 @@ function getAnElementWithClasses(element , elementClasses){
 
 
 
-// * FUNZIONE PER CREARE UN IMAMGINE HTML CON UNA O PIU' CLASSI
-function getAnImgWithClasses(imgClasses , src , alt , title){
-   let img = getAnElementWithClasses('img' , imgClasses);
-   img.src = `${src}`;
-   img.alt = {alt};
-   img.title = title;
-}
-
-
-
 // * FUNZIONE PER ANDARE AVANTI DI UN ELEMENTO DI UN CAROSELLO
 function increaseCurrentCarouselItem(items , currentIndex , thumbnails){
    eliminateCurrentCarouselItem(items,currentIndex,thumbnails);
