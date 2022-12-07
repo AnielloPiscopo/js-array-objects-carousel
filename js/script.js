@@ -74,13 +74,13 @@ images.forEach((img , index) => {
 
    // * Riempimento del contenuto
    carouselItem.innerHTML = `
-      <img src='${img['image']}'></img>
+      <img src='${img['image']}' alt="${img.title}'s game image" title="${img.title}'s game image"></img>
       <h3 class='fw-bold'>${img['title']}</h3>
       <span>${img['text']}</span>
    `;
 
    carouselThumbnail.innerHTML = `
-      <img src='${img['image']}'></img>
+      <img src='${img['image']}' alt="${img.title}'s game image" title="${img.title}'s game image"></img>
    `;
 
 
