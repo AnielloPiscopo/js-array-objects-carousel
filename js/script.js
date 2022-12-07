@@ -65,6 +65,7 @@ images.forEach((img , index) => {
    const carouselItem = getAnElementWithClasses('div','my_carousel-item');
    const carouselThumbnail = getAnElementWithClasses('div','carousel-thumbnails active');
 
+
    // * Condizione iniziale
    if(index === 0){
       carouselItem.classList.add('active');
@@ -82,7 +83,6 @@ images.forEach((img , index) => {
    carouselThumbnail.innerHTML = `
       <img src='${img['image']}' alt="${img.title}'s game image" title="${img.title}'s game image"></img>
    `;
-
 
    // * Inserimento nel DOM
    carouselImageElement.append(carouselItem);
@@ -135,6 +135,7 @@ title.addEventListener('click',()=>{
 
    if(intervalPresence) alert('Intervallo bloccato!');
    
+
    intervalPresence = false;
 
    title.title = "L'intervallo è stato già interotto";
